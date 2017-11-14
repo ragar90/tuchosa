@@ -10,5 +10,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  knex.schema.dropTableIfExists('rentals')
+  knex.schema.dropTableIfExists('contract_types')
 };
