@@ -11,11 +11,11 @@ services:
     env_file:
      - ./.env
     environment:
-      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_DB}:5432/${MASTER_SCHEMA}
-      - TEST_DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${TEST_POSTGRES_DB}:5432/${MASTER_SCHEMA}
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${POSTGRES_DB}
+      - TEST_DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${POSTGRES_DB_TEST}
       - PORT=${PORT}
     volumes:
-      - .:/ecomanda
+      - .:/tuchosa
   db:
     image: postgres
     env_file:

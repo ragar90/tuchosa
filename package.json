@@ -1,7 +1,7 @@
 {
-  "name": "ecomanda-backend",
+  "name": "tuchosa.com",
   "version": "1.0.0",
-  "description": "Server Backend for orders and dispatach administration",
+  "description": "Server Backend for rentals management",
   "main": "server.js",
   "scripts": {
     "new:migration": "knex migrate:make --env development",

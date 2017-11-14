@@ -1,8 +1,8 @@
 version: '2.1'
 
 services:
-  ecomanda-node:
-  ecomanda-backend:
+  tuchosa-node:
+  tuchosa-backend:
     build: .
     ports:
       - 3000:3000
