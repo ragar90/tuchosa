@@ -1,4 +1,4 @@
-# e-comanda NodeJS
+# Tuchosa.com NodeJS
 
 ## Introduccion
-Esta es la implementación del codigo de backend de [e-comanda.com](www.e-comanda.com)
+Esta es la implementación del codigo de backend de [tuchosa.com](tuchosa.com)
