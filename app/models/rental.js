@@ -3,7 +3,7 @@ const RentalType = require('./rental_type');
 const ContractType = require('./contract_type');
 const Bill = require('./bill');
 const RentalRule = require('./rental_rule');
-const RentalAmenity = require('./rental_amenity');
+const Property = require('./property');
 
 var Rental = Bookshelf.Model.extend({
   tableName: 'rentals',
@@ -17,8 +17,8 @@ var Rental = Bookshelf.Model.extend({
   tenant: function () {
     return this.belongsTo(User);
   },
-  rentalType: function () {
-    return this.belongsTo(RentalType);
+  property: function () {
+    return this.belongsTo(Property);
   },
   contractType: function () {
     return this.belongsTo(ContractType)

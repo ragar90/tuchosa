@@ -31,7 +31,7 @@ module.exports = [
     updated_at: moment().format()
   },
   {
-    name: 'Accesso a Silla de ruedas',
+    name: 'Acceso a Silla de ruedas',
     description: 'Infraestructura para silla de ruedas',
     created_at: moment().format(),
     updated_at: moment().format()

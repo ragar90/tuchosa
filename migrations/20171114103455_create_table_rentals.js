@@ -8,17 +8,14 @@ exports.up = function (knex, Promise) {
     table.foreign('manager_id').references('users.id');
     table.integer('tenant_id');
     table.foreign('tenant_id').references('users.id');
-    table.integer('rental_type_id').references('rental_types.id');
     table.integer('contract_type_id').references('contract_types.id');
+    table.integer('property_id').references('properties.id')
     table.string('name');
     table.text('address')
     table.decimal('latitude');
     table.decimal('longitude');
     table.decimal('price');
     table.decimal('deposit');
-    table.integer('total_rooms')
-    table.integer('total_bathrooms')
-    table.boolean('share_bathroom')
     table.boolean('deposit_return_policy')
     table.string('picture_1_url')
     table.string('picture_2_url')
