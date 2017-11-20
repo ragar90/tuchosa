@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "new:migration": "knex migrate:make --env development",
+    "new:seeds": "knex seed:make --env development",
     "migrate:development": "knex migrate:latest --env development",
     "migrate:test": "knex migrate:latest --env test",
     "migrate:staging": "knex migrate:latest --env staging",
@@ -16,7 +17,7 @@
     "bookshelf": "^0.10.3",
     "express": "^4.15.2",
     "fs-extra": "^4.0.2",
-    "knex": "^0.12.7",
+    "knex": "^0.14.0",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "pg": "^6.1.3",
@@ -24,6 +25,7 @@
     "shortid": "^2.2.8"
   },
   "devDependencies": {
+    "dotenv": "^4.0.0",
     "mocha": "^3.2.0",
     "chai": "^3.5.0",
     "faker": "^4.1.0",

@@ -1,7 +1,7 @@
 
 exports.up = function(knex, Promise) {
-  knex.schema.createTableIfNotExists('contract_types', function (table) {
-    table.increments('id');
+  return knex.schema.createTableIfNotExists('contract_types', function (table) {
+    table.increments('id').primary();
     table.string('name');
     table.text('description');
     table.integer('duration'); // in Months
@@ -10,5 +10,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  knex.schema.dropTableIfExists('contract_types')
+  return knex.schema.dropTableIfExists('contract_types')
 };

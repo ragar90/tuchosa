@@ -1,9 +1,11 @@
 
 exports.up = function(knex, Promise) {
-  knex.schema.createTableIfNotExists('bills', function (table) {
-    table.increments('id');
+  return knex.schema.createTableIfNotExists('bills', function (table) {
+    table.increments('id').primary();
     table.integer('rental_id');
-    table.text('user_id');
+    table.foreign('rental_id').references('rentals.id');
+    table.integer('tenant_id');
+    table.foreign('tenant_id').references('users.id');
     table.integer('state');
     table.decimal('subtotal');
     table.decimal('fee_amount');
@@ -14,5 +16,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  knex.schema.dropTableIfExists('bills')
+  return knex.schema.dropTableIfExists('bills')
 };

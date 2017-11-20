@@ -1,12 +1,12 @@
 
 exports.up = function(knex, Promise) {
-  knex.schema.createTableIfNotExists('rental_types', function (table) {
-    table.increments('id');
+  return knex.schema.createTableIfNotExists('rental_types', function (table) {
+    table.increments('id').primary();
     table.string('name');
     table.timestamps();
   })
 };
 
 exports.down = function (knex, Promise) {
-  knex.schema.dropTableIfExists('rental_types')
+  return knex.schema.dropTableIfExists('rental_types')
 };
