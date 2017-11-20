@@ -26,6 +26,7 @@ exports.up = function (knex, Promise) {
     table.string('picture_4_url')
     table.string('picture_5_url')
     table.boolean('vacant')
+    table.boolean('required_gender')
     table.timestamps();
   })
 };

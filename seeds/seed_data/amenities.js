@@ -19,7 +19,7 @@ module.exports = [
     updated_at: moment().format()
   },
   {
-    name: 'Cocida',
+    name: 'Cocina',
     description: 'Espacio para cocina',
     created_at: moment().format(),
     updated_at: moment().format()
