@@ -10,6 +10,9 @@
     "migrate:test": "knex migrate:latest --env test",
     "migrate:staging": "knex migrate:latest --env staging",
     "migrate:production": "knex migrate:latest --env production",
+    "seed:development": "knex seed:run --env development",
+    "seed:staging": "knex seed:run --env staging",
+    "seed:production": "knex seed:run --env production",
     "start:server": "node server.js"
   },
   "dependencies": {
