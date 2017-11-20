@@ -1,8 +1,8 @@
 
 const amenitiesData = require('./seed_data/amenities');
 const contractTypesData = require('./seed_data/contract_types')
-const rentalTypes = require('./seed_data/rental_types');
-const userTypes = require('./seed_data/user_types');
+const rentalTypesData = require('./seed_data/rental_types');
+const userTypesData = require('./seed_data/user_types');
 exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
   return knex('amenities').del()
@@ -12,7 +12,7 @@ exports.seed = function (knex, Promise) {
     .then(function () {
       return knex('rental_types').del()
     })
-    .them(function () {
+    .then(function () {
       return knex('user_types').del()
     })
     .then(function () {
@@ -23,9 +23,9 @@ exports.seed = function (knex, Promise) {
       return knex('contract_types').insert(contractTypesData);
     })
     .then(function () {
-      return knex('rental_types').insert(rentalTypes)
+      return knex('rental_types').insert(rentalTypesData)
     })
     .then(function () {
-      return knex(user_types).insert(userTypes)
+      return knex('user_types').insert(userTypesData)
     })
 };
