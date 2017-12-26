@@ -1,6 +1,10 @@
-var Bookshelf = require('../../config/bookshelf');
-var RentalAmenity = require('./rental_amenity')
-var Amenity = Bookshelf.Model.extend({
+const Bookshelf = require('../../config/bookshelf');
+const RentalAmenity = require('./rental_amenity')
+
+Bookshelf.plugin('registry');
+Bookshelf.plugin('pagination');
+
+const Amenity = Bookshelf.Model.extend({
   tableName: 'amenities',
   hasTimestamps: true,
   rentalAmenities: function () {
@@ -8,4 +12,4 @@ var Amenity = Bookshelf.Model.extend({
   }
 })
 
-module.exports = Amenity;
+module.exports = Bookshelf.model('Amenity', Amenity);

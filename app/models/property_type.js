@@ -1,5 +1,8 @@
-var Bookshelf = require('../../config/bookshelf');
-var Property = require('./property')
+const Bookshelf = require('../../config/bookshelf');
+const Property = require('./property');
+
+Bookshelf.plugin('registry');
+Bookshelf.plugin('pagination');
 
 var PropertyType = Bookshelf.Model.extend({
   tableName: 'property_types',
@@ -9,4 +12,4 @@ var PropertyType = Bookshelf.Model.extend({
   }
 })
 
-module.exports = PropertyType;
+module.exports = Bookshelf.model('PropertyType', PropertyType);

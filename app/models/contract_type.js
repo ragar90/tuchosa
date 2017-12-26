@@ -1,7 +1,10 @@
-var Bookshelf = require('../../config/bookshelf');
-var Rental = require('./rental')
+const Bookshelf = require('../../config/bookshelf');
+const Rental = require('./rental')
 
-var ContractType = Bookshelf.Model.extend({
+Bookshelf.plugin('registry');
+Bookshelf.plugin('pagination');
+
+const ContractType = Bookshelf.Model.extend({
   tableName: 'contract_types',
   hasTimestamps: true,
   rentals: function () {
@@ -9,4 +12,4 @@ var ContractType = Bookshelf.Model.extend({
   }
 })
 
-module.exports = ContractType;
+module.exports = Bookshelf.model('ContractType', ContractType);

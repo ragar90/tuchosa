@@ -1,7 +1,11 @@
-var Bookshelf = require('../../config/bookshelf');
-var Rental = require('./rental')
-var UserType = require('./user_type')
-var User = Bookshelf.Model.extend({
+const Bookshelf = require('../../config/bookshelf');
+const Rental = require('./rental')
+const UserType = require('./user_type')
+
+Bookshelf.plugin('registry');
+Bookshelf.plugin('pagination');
+
+const User = Bookshelf.Model.extend({
   tableName: 'users',
   hasTimestamps: true,
   ownRentals: function () {
@@ -18,4 +22,4 @@ var User = Bookshelf.Model.extend({
   }
 })
 
-module.exports = User;
+module.exports = Bookshelf.model('User', User);

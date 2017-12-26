@@ -1,31 +1,32 @@
-var express = require('express');
-var router = require('./route_mapper');
-var bodyParser = require('body-parser');
-var config = require('.')
-var _ = require('lodash');
+const express = require('express');
+const app = express()
+const bodyParser = require('body-parser');
+const controllers = require('../../app/controllers');// => {cargos: {}, platos: {}}
+const config = require('.')
+const _ = require('lodash');
 
-router.use(bodyParser.json()); // for parsing application/json
-router.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 // Merging all parametters into one single object
-router.use(function (req, res, next) {
+app.use(function (req, res, next) {
 	req.mergedParams = _.assign({}, req.params, req.query, req.body)
 	if (config.VERBOSE) {
 		console.log('Received Parammetters: ', req.mergedParams)
 	}
-  next();
+	next();
 });
 
-// TODO: Change this to use express router in a config file
+app.param("id", (req, res, next, id) => {
+	next()
+})
 
-router.use(express.static('public'))
+_.each(controllers, function (controlller, key) {
+	const route = controlller.route; // => /route
+	const router = controlller.router;
+	const fullRoute = prefixRoute + route; // =>  /admin/route
+	app.use(fullRoute, router)
+})
 
-router.get('/api/test', function (req, res) {
-	var responseData = {
-		field_1: 'Hola',
-		field_2: 'Mundo'
-	}
-	res.send(responseData);
-});
 
 module.exports = router

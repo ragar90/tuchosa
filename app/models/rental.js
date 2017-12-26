@@ -5,15 +5,12 @@ const Bill = require('./bill');
 const RentalRule = require('./rental_rule');
 const Property = require('./property');
 
-var Rental = Bookshelf.Model.extend({
+Bookshelf.plugin('registry');
+Bookshelf.plugin('pagination');
+
+const Rental = Bookshelf.Model.extend({
   tableName: 'rentals',
   hasTimestamps: true,
-  owner: function () {
-    return this.belongsTo(User);
-  },
-  manager: function () {
-    return this.belongsTo(User);
-  },
   tenant: function () {
     return this.belongsTo(User);
   },
@@ -25,13 +22,7 @@ var Rental = Bookshelf.Model.extend({
   },
   bills: function () {
     return this.hasMany(Bill)
-  },
-  rentalRules: function () {
-    return this.hasMany(RentalRule)
-  },
-  rentalAmenities: function () {
-    return this.hasMany(RentalAmenity)
   }
 })
 
-module.exports = Rental;
+module.exports = Bookshelf.model('Rental', Rental);
