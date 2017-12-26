@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
     table.foreign('rental_id').references('rentals.id');
     table.integer('tenant_id');
     table.foreign('tenant_id').references('users.id');
-    table.integer('state');
+    table.integer('state'); //Send: 0, Payed: 1, Overdue: 2
     table.decimal('subtotal');
     table.decimal('fee_amount');
     table.decimal('taxes');

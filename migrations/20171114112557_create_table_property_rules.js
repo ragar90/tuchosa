@@ -1,9 +1,9 @@
 
 exports.up = function (knex, Promise) {
-  return knex.schema.createTableIfNotExists('rental_rules', function (table) {
+  return knex.schema.createTableIfNotExists('property_rules', function (table) {
     table.increments('id').primary();
-    table.integer('rental_id');
-    table.foreign('rental_id').references('rentals.id');
+    table.integer('property_id');
+    table.foreign('property_id').references('properties.id');
     table.text('description');
     table.decimal('penalty')
     table.timestamps();

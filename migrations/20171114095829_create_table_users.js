@@ -5,7 +5,9 @@ exports.up = function(knex, Promise) {
     table.integer('user_type_id');
     table.foreign('user_type_id').references('user_types.id');
     table.string('name');
+    table.string('lastname');
     table.string('email');
+    table.timestamp('age_of_birth');
     table.string('encrypted_password');
     table.string('reset_password_token');
     table.string('reset_password_sent_at');
