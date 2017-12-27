@@ -1,4 +1,4 @@
-const Property = require('../models/properties.js');
+const Property = require('../models').property;
 const express = require('express')
 const router = express.Router()
 const route = '/properties'
