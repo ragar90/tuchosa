@@ -3,9 +3,9 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTableIfNotExists('properties', function (table) {
     table.increments('id').primary();
     table.integer('manager_id');
-    table.integer('owner_id');
+    table.integer('landlord_id');
     table.foreign('manager_id').references('users.id');
-    table.foreign('owner_id').references('landlords.id');
+    table.foreign('landlord_id').references('landlords.id');
     table.integer('property_type_id').references('property_types.id');
     table.integer('state');// Unavaliable: 0, Vacant: 1, Reserved: 2, Rented: 3 
     table.string('name');
