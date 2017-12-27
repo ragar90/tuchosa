@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const _ = require('lodash')
-const modelDirectory = __dirname;
+const controllerDirectory = __dirname;
 
 function getControllers() {
   var files = fs.readdirSync(__dirname)
