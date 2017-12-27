@@ -7,6 +7,7 @@ router.use(function (req, res, next) {
   if (req.params.id) {
     PropertyAmenity
       .where({ id: req.params.id })
+      .fetch()
       .then(function (propertyAmenity) {
         req.mergedParams.currentPropertyAmenity = propertyAmenity
         next();

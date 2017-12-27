@@ -7,6 +7,7 @@ router.use(function (req, res, next) {
   if (req.params.id) {
     PropertyRule
       .where({ id: req.params.id })
+      .fetch()
       .then(function (propertyRule) {
         req.mergedParams.currentPropertyRule = propertyRule
         next();

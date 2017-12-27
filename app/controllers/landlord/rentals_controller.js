@@ -7,6 +7,7 @@ router.use(function (req, res, next) {
   if (req.params.id) {
     Rental
       .where({ id: req.params.id })
+      .fetch()
       .then(function (rental) {
         req.mergedParams.currentRental = rental
         next();
