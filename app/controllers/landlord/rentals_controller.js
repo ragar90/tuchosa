@@ -76,11 +76,11 @@ function destroy(req, res) {
 }
 
 
-router.get('/', index);// GET /properties
-router.post('/', create);// POST /properties
-router.get('/:id', show)// GET /properties/:id
-router.put(':/id', update)// PUT /properties/:id
-router.delete('/:id/disable', destroy);// DELETE /properties/:id/disable
+router.get('/', index);// GET /rentals
+router.post('/', create);// POST /rentals
+router.get('/:id', show)// GET /rentals/:id
+router.put(':/id', update)// PUT /rentals/:id
+router.delete('/:id/finished', destroy);// DELETE /rentals/:id/finished
 
 module.exports = {
   router: router,
