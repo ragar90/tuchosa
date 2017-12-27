@@ -1,19 +1,12 @@
-const Property = require('../models').property;
 const PropertyRule = require('../models').property_rule;
 const express = require('express')
 const router = express.Router()
 const route = '/property_rules'
 
-
-const Property = require('../models/properties.js');
-const express = require('express')
-const router = express.Router()
-const route = '/properties'
-
 router.use(function (req, res, next) {
   if (req.params.id) {
     PropertyRule
-      .where({ id: req.mergedParams.id })
+      .where({ id: req.params.id })
       .then(function (propertyRule) {
         req.mergedParams.currentPropertyRule = propertyRule
         next();
@@ -21,17 +14,14 @@ router.use(function (req, res, next) {
   } else {
     next();
   }
-
 });
 
-// GET /properties
+/** Handlers */
 function index(req, res) {
-  const page = req.mergedParams.page || 1;
-  const pageSize = 10;
   const propertyId = req.mergedParams.propertyId;
   PropertyRule
     .where({ property_id: propertyId })
-    .fetchPage({ page: page, pageSize: pageSize })
+    .fetchAll()
     .then(function (propertyRules) {
       console.log(propertyRules);
       res.send(propertyRules.toJSON())
@@ -41,12 +31,10 @@ function index(req, res) {
       res.status(400).json({ error_message: 'Error while fetching properties' })
     })
 }
-router.get('/', index);
 
-// POST /properties
 function create(req, res) {
   const propertyRuleParams = request.mergedParams.propertyRuleParams;
-  Property.forge(propertyData)
+  PropertyRule.forge(propertyRuleParams)
     .save()
     .then(function (property) {
       res.json(property.toJSON())
@@ -56,16 +44,12 @@ function create(req, res) {
       res.status(400).json({ error_message: 'Error while Saving new property', error: error })
     })
 }
-router.post('/', create);
 
-// GET /properties/:id
 function show(req, res) {
-  const requestedPropertyRule = req.mergedParams.currentProperty
+  const requestedPropertyRule = req.mergedParams.currentPropertyRule
   res.send(requestedPropertyRulerty.toJSON())
 }
-router.get('/:id', show)
 
-// PUT /properties/:id
 function update(req, res) {
   const requestedPropertyRule = req.mergedParams.currentPropertyRule
   const propertyRuleParams = req.mergedParams.propertyRuleParams
@@ -79,9 +63,7 @@ function update(req, res) {
       res.status(400).json({ error_message: 'Error while fetching properties', error: error })
     });
 }
-router.put(':/id', update)
 
-// DELETE /properties/:id/disable
 function destroy(req, res) {
   const requestedPropertyRule = req.mergedParams.currentPropertyRule
   requestedPropertyRule.destroy()
@@ -93,7 +75,13 @@ function destroy(req, res) {
       res.status(400).json({ error_message: 'Error while fetching properties', error: error })
     })
 }
-router.delete('/:id/disable', destroy);
+
+/** Routes */
+router.get('/', index);// GET /property_rules
+router.post('/', create);// POST /property_rules
+router.get('/:id', show)// GET /property_rules/:id
+router.put('/:id', update)// PUT /property_rules/:id
+router.delete('/:id', destroy);// DELETE /property_rules/
 
 module.exports = {
   router: router,

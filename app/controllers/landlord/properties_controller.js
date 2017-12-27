@@ -4,9 +4,9 @@ const router = express.Router()
 const route = '/properties'
 
 router.use(function (req, res, next) {
-  if (req.mergedParams.id) {
+  if (req.params.id) {
     Property
-      .where({ id: req.mergedParams.id })
+      .where({ id: req.params.id })
       .then(function (property) {
         req.mergedParams.currentProperty = property
         next();
@@ -17,7 +17,6 @@ router.use(function (req, res, next) {
   
 });
 
-// GET /properties
 function index(req, res) {
   const page = req.mergedParams.page || 1;
   const pageSize = 10;
@@ -34,9 +33,7 @@ function index(req, res) {
       res.status(400).json({error_message: 'Error while fetching properties'})
     })
 }
-router.get('/', index);
 
-// POST /properties
 function create(req, res) {
   const propertyParams = request.mergedParams.propertyParams;
   Property.forge(propertyParams)
@@ -49,16 +46,12 @@ function create(req, res) {
       res.status(400).json({ error_message: 'Error while Saving new property', error: error })
     })
 }
-router.post('/', create);
 
-// GET /properties/:id
 function show(req, res) {
   const property = req.mergedParams.currentProperty
   res.send(property.toJSON())
 }
-router.get('/:id', show)
 
-// PUT /properties/:id
 function update(req, res) {
   const property = req.mergedParams.currentProperty
   const propertyParams = req.mergedParams.propertyParams
@@ -72,9 +65,7 @@ function update(req, res) {
       res.status(400).json({ error_message: 'Error while fetching properties', error: error})
     });
 }
-router.put(':/id', update)
 
-// DELETE /properties/:id/disable
 function destroy(req, res) {
   const requestedProperty = req.mergedParams.currentProperty
   requestedProperty.set({state: 0})
@@ -83,7 +74,13 @@ function destroy(req, res) {
       res.json(property.toJSON())
     })
 }
-router.delete('/:id/disable', destroy);
+
+
+router.get('/', index);// GET /properties
+router.post('/', create);// POST /properties
+router.get('/:id', show)// GET /properties/:id
+router.put(':/id', update)// PUT /properties/:id
+router.delete('/:id/disable', destroy);// DELETE /properties/:id/disable
 
 module.exports = {
   router: router,
