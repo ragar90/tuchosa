@@ -1,4 +1,5 @@
-const PropertyRule = require('../models').property_rule;
+const PropertyRule = require('../../models').property_rule;
+const loader = require('../../helpers/module_loader_helper')
 const express = require('express')
 const router = express.Router()
 const route = '/property_rules'
@@ -84,7 +85,4 @@ router.get('/:id', show)// GET /property_rules/:id
 router.put('/:id', update)// PUT /property_rules/:id
 router.delete('/:id', destroy);// DELETE /property_rules/
 
-module.exports = {
-  router: router,
-  route: route
-}
+module.exports = loader.exportController(route, router);

@@ -1,8 +1,8 @@
-const Amenity = require('../models').amenity;
+const Amenity = require('../../models').amenity;
+const loader = require('../../helpers/module_loader_helper')
 const express = require('express')
 const router = express.Router()
 const route = '/amenities'
-
 
 function index(req, res) {
   Amenity
@@ -19,7 +19,4 @@ function index(req, res) {
 
 router.get('/', index);// GET /amenities
 
-module.exports = {
-  router: router,
-  route: route
-}
+module.exports = loader.exportController(route, router);

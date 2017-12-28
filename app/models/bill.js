@@ -1,5 +1,5 @@
 const Bookshelf = require('../../config/bookshelf');
-const Rental = require('./rentals');
+const Rental = require('./rental');
 const BillDetail = require('./bill_detail');
 const User = require('./user');
 

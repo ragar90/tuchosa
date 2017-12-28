@@ -1,4 +1,5 @@
-const PropertyType = require('../models').property_type;
+const PropertyType = require('../../models').property_type;
+const loader = require('../../helpers/module_loader_helper')
 const express = require('express')
 const router = express.Router()
 const route = '/property_types'
@@ -19,7 +20,4 @@ function index(req, res) {
 
 router.get('/', index);// GET /property_types
 
-module.exports = {
-  router: router,
-  route: route
-}
+module.exports = loader.exportController(route, router);

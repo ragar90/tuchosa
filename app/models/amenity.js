@@ -1,5 +1,5 @@
 const Bookshelf = require('../../config/bookshelf');
-const RentalAmenity = require('./rental_amenity')
+const RentalAmenity = require('./property_amenity')
 
 Bookshelf.plugin('registry');
 Bookshelf.plugin('pagination');

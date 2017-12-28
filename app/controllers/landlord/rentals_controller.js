@@ -1,4 +1,5 @@
-const Rental = require('../models').rental;
+const Rental = require('../../models').rental;
+const loader = require('../../helpers/module_loader_helper')
 const express = require('express')
 const router = express.Router()
 const route = '/rentals'
@@ -83,7 +84,4 @@ router.get('/:id', show)// GET /rentals/:id
 router.put(':/id', update)// PUT /rentals/:id
 router.delete('/:id/finished', destroy);// DELETE /rentals/:id/finished
 
-module.exports = {
-  router: router,
-  route: route
-}
+module.exports = loader.exportController(route, router);

@@ -1,4 +1,5 @@
-const LandLord = require('../models').landlord;
+const LandLord = require('../../models').landlord;
+const loader = require('../../helpers/module_loader_helper')
 const express = require('express')
 const router = express.Router()
 const route = '/'
@@ -28,10 +29,7 @@ function destroy(req, res) {
 }
 
 
-router.get('/sign_in', index);// GET /sign_in
-router.delete('/sign_out', index);// DELETE /sign_out
+router.get('/sign_in', create);// GET /sign_in
+router.delete('/sign_out', destroy);// DELETE /sign_out
 
-module.exports = {
-  router: router,
-  route: route
-}
+module.exports = loader.exportController(route, router);

@@ -1,4 +1,5 @@
-const PropertyAmenity = require('../models').property_amenity;
+const PropertyAmenity = require('../../models').property_amenity;
+const loader = require('../../helpers/module_loader_helper')
 const express = require('express')
 const router = express.Router()
 const route = '/property_amenities'
@@ -84,7 +85,4 @@ router.get('/:id', show)// GET /property_amenities/:id
 router.put(':/id', update)// PUT /property_amenities/:id
 router.delete('/:id', destroy);// DELETE /property_amenities/:id/
 
-module.exports = {
-  router: router,
-  route: route
-}
+module.exports = loader.exportController(route, router);

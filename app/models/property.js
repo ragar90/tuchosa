@@ -26,7 +26,7 @@ const validatorConfig = {
 
 Bookshelf.plugin('registry');
 Bookshelf.plugin('pagination');
-bookshelf.plugin('bookshelf-validate', validatorConfig);
+Bookshelf.plugin('bookshelf-validate', validatorConfig);
 
 const Property = Bookshelf.Model.extend({
   tableName: 'properties',
@@ -64,8 +64,7 @@ const Property = Bookshelf.Model.extend({
   },
   rentals: function () {
     return this.hasMany(Rental);
-  },
-  states: fun
+  }
 })
 
 module.exports = Bookshelf.model('Property', Property);

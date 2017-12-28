@@ -1,8 +1,6 @@
 const Bookshelf = require('../../config/bookshelf');
-const RentalType = require('./rental_type');
 const ContractType = require('./contract_type');
 const Bill = require('./bill');
-const RentalRule = require('./rental_rule');
 const Property = require('./property');
 
 Bookshelf.plugin('registry');
