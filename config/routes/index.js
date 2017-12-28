@@ -5,6 +5,9 @@ const controllers = require('../../app/controllers');// => {cargos: {}, platos: 
 const config = require('.')
 const _ = require('lodash');
 
+app.set('views', '../views');
+app.set('view engine', 'mustache');
+
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 

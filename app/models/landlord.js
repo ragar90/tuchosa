@@ -15,9 +15,27 @@ const LandLord = Bookshelf.Model.extend({
   },
   singOut: () => {
     this.set({ session_token: null}).save()
+  },
+  resetPassowordToken: () => {
+    const token = sha256(randomString(64));
+    return this.set({ reset_password_token: token }).save()
+  },
+  encryptAndSavePassword: (password, password_confirmation) => {
+    return new Promise((resolve, reject) => {
+      if (password !== password_confirmation) throw new Error('Both Passwords are different');
+      const encryptedPassword = sha256(password);
+      this.set({ encrypted_password: encryptedPassword})
+        .save()
+        .then((landlord) => {
+          resolve(landlord)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
   }
 },{
-  authenticate: function (email, password, ipAddress) {
+  authenticate: (email, password, ipAddress) => {
     return new Promise((resolve, reject) => {
       if (!email || !password) 
         throw new Error('Email and password are both required');;
